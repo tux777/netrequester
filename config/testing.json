@@ -1,0 +1,16 @@
+{
+    "log_to_file": true,
+    "check_test_settings": false,
+
+    "get": {
+        "enabled": true
+    },
+
+    "post": {
+        "enabled": false
+    },
+
+    "option": {
+        "enabled": false
+    }
+}
