@@ -1,4 +1,4 @@
-import json, sys
+import json
 from components.logging.logging import logger
 
 settings = {}
@@ -16,6 +16,9 @@ def startTest(testName, testSettings, generalSettings):
             test()
 
 def test():
+    test_logger = logger(None)
+    test_logger.initalizeCount()
+
     with open('./config/testing.json', 'r') as config:
         settings = json.load(config)
 
@@ -23,18 +26,12 @@ def test():
     for test in settings:
         if isinstance(settings[test], dict):
             if test != "general":
-                test_logger = logger(None) # No default logger type
-                log_count = 0
-                test_logger.attachCounter(log_count)
-                log_count += 1
-                test_logger.log(test_logger.counts)
-
                 if settings[test].get("enabled"):
                     test_settings = {}
                     for test_setting in settings[test]:
                         test_settings.update({f'{test_setting}': f'{settings[test].get(test_setting)}'})
 
-                    test_logger.log(f"Starting {test} test.", "info")
+                    test_logger.log(f"Starting {test.capitalize()} test.", "info")
                     try:
                         startTest(test, test_settings, settings.get("general"))
                     except AssertionError as err:
