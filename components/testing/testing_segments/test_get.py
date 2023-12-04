@@ -1,4 +1,5 @@
-import requests
+from components.request import request
 
 def test():
-    assert 1+1==2
+    getRequest = request(type="GET", data={"User-Agent": "Chrome", "Accept": "application/json"})
+    getRequest.data
