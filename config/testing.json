@@ -7,10 +7,10 @@
     },
 
     "post": {
-        "enabled": false
+        "enabled": true
     },
 
-    "option": {
-        "enabled": false
+    "patch": {
+        "enabled": true
     }
 }

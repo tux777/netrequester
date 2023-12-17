@@ -8,8 +8,8 @@ def startTest(testName, testSettings, generalSettings):
         case 'get':
             from components.testing.testing_segments.test_get import test
             test()
-        case 'option':
-            from components.testing.testing_segments.test_option import test
+        case 'patch':
+            from components.testing.testing_segments.test_patch import test
             test()
         case 'post':
             from components.testing.testing_segments.test_post import test
@@ -34,7 +34,7 @@ def test():
                     test_logger.log(f"Starting {test.capitalize()} test.", "info")
                     try:
                         startTest(test, test_settings, settings.get("general"))
-                    except AssertionError as err:
+                    except Exception as err:
                         test_logger.log(f"{err}", "error")
                 else:
                     test_logger.log(f"{test.capitalize()} test is disabled, continuing...", "warning")
